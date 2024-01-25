@@ -89,6 +89,9 @@ dependencies:
   rehype-pretty-code:
     specifier: ^0.12.3
     version: 0.12.3(shikiji@0.9.0)
+  requirejs:
+    specifier: ^2.3.6
+    version: 2.3.6
   shikiji:
     specifier: 0.9.0
     version: 0.9.0
@@ -3515,6 +3518,12 @@ packages:
       shikiji: 0.9.0
       unified: 11.0.4
       unist-util-visit: 5.0.0
+    dev: false
+
+  /requirejs@2.3.6:
+    resolution: {integrity: sha512-ipEzlWQe6RK3jkzikgCupiTbTvm4S0/CAU5GlgptkN5SO6F3u0UD0K18wy6ErDqiCyP4J4YYe1HuAShvsxePLg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
     dev: false
 
   /resolve-from@4.0.0:
