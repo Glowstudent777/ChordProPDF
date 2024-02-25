@@ -13,7 +13,7 @@ import "ace-builds/src-noconflict/ext-error_marker";
 
 import { cn } from "@/lib/utils"
 import ChordProMode from '@/ace/mode-chordpro';
-import '@/ace/theme-chordpro'
+import '@/ace/theme-chordpro';
 
 export function ChordProEditor({ onChange, className }: any) {
     const [editorValue, setEditorValue] = useState('');
@@ -28,7 +28,7 @@ export function ChordProEditor({ onChange, className }: any) {
     return (
         <AceEditor
             mode={customMode}
-            theme="ace/theme/chordpro"
+            theme="chordpro"
             onChange={handleEditorChange}
             name="editor"
             editorProps={{ $blockScrolling: true }}
