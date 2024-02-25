@@ -11,10 +11,12 @@ import "ace-builds/src-noconflict/ext-settings_menu";
 import "ace-builds/src-noconflict/ext-keybinding_menu";
 import "ace-builds/src-noconflict/ext-error_marker";
 
-import 'brace/theme/github'
+import '@/ace/textmate'
+
+import { cn } from "@/lib/utils"
 import ChordProMode from '@/ace/mode-chordpro';
 
-export function ChordProEditor({ onChange }: any) {
+export function ChordProEditor({ onChange, className }: any) {
     const [editorValue, setEditorValue] = useState('');
 
     const handleEditorChange = (value: any) => {
@@ -25,16 +27,16 @@ export function ChordProEditor({ onChange }: any) {
 
 
     return (
-        <>
-            <AceEditor
-                mode={customMode}
-                theme="github"
-                onChange={handleEditorChange}
-                name="editor"
-                editorProps={{ $blockScrolling: true }}
-                setOptions={{ useWorker: false }}
-                value={editorValue}
-            />
-        </>
+        <AceEditor
+            mode={customMode}
+            theme="textmate"
+            onChange={handleEditorChange}
+            name="editor"
+            editorProps={{ $blockScrolling: true }}
+            setOptions={{ useWorker: false }}
+            value={editorValue}
+            className={cn(className)}
+            height='100%'
+        />
     )
 }

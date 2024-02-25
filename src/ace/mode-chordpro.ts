@@ -5,106 +5,106 @@ export class ChordProHighlightRules extends ace.require("ace/mode/text_highlight
     constructor() {
         super();
 
-        const reOpenBrace = '(^\\s*{)';
-        const reCloseBrace = '(\\s*}\\s*$)';
-        const reColon = '(\\s*:)';
+        var reOpenBrace = "(^\\s*{)";
+        var reCloseBrace = "(\\s*}\\s*$)";
+        var reColon = "(\\s*:)";
 
-        const reNumber = '\\b[0-9]+\\b';
+        // stand alone
+        var reNumber = "\\b[0-9]+\\b";
 
-        const tkBrace = 'meta.tag';
-        const tkCommand = 'meta';
-        const tkSingleTag = 'entity.name';
+        // token (CSS classes names)
+        var tkBrace = 'meta.tag';
+        var tkCommand = 'meta';
+        var tkSingleTag = 'entity.name';
 
         this.$rules = {
-            "start": [
-                {
-                    token: 'comment',
-                    regex: '^#.*$', // debated this, for now MUST be first character (otherwise allow \\s*)
-                },
-                {
-                    token: [tkBrace, tkSingleTag, tkBrace],
-                    regex: `${reOpenBrace}(column_break|new_page|np|colb|start_of_chorus|soc|end_of_chorus|eoc)${reCloseBrace}`,
-                    caseInsensitive: true,
-                }, {
-                    token: [tkBrace, tkSingleTag, tkBrace],
-                    regex: `${reOpenBrace}(start_of_tab|sot)${reCloseBrace}`,
-                    caseInsensitive: true,
-                    next: 'tabBlockTag',
-                }, {
-                    token: [tkBrace, tkCommand, tkBrace],
-                    regex: `${reOpenBrace}(define)${reColon}`,
-                    caseInsensitive: true,
-                    next: 'defineTag',
-                }, {
-                    // tkCommand?
-                    token: [tkBrace, 'meta', tkBrace, 'text', tkBrace],
-                    regex: `${reOpenBrace}(c|comment)${reColon}(.*)${reCloseBrace}`,
-                    caseInsensitive: true,
-                }, {
-                    token: [tkBrace, tkCommand, tkBrace, 'string', tkBrace],
-                    regex: `${reOpenBrace}(title|t|subtitle|st|artist|album|instrument|tuning|key|k)${reColon}(.*)${reCloseBrace}`,
-                    caseInsensitive: true,
-                }, {
-                    token: [tkBrace, 'invalid', tkBrace, 'string', tkBrace],
-                    regex: `${reOpenBrace}([-\\S]+)${reColon}(.*)${reCloseBrace}`,
-                    caseInsensitive: true,
-                }, {
-                    token: [tkBrace, 'invalid', tkBrace],
-                    regex: `${reOpenBrace}(.+)${reCloseBrace}`,
-                    caseInsensitive: true,
-                }, {
-                    token: 'constant.numeric',
-                    regex: reNumber,
-                }, {
-                    token: ['constant.character.escape', 'keyword', 'constant.character.escape'],
-                    regex: '(\\[)(.*?)(\\])',
-                }, {
-                    token: 'text',
-                    regex: '\\s+',
-                }],
+            "start": [{
+                token: "comment",
+                regex: "^#.*$" // debated this, for now MUST be first character (otherwise allow \\s*)
+            }, {
+                token: [tkBrace, tkSingleTag, tkBrace],
+                regex: reOpenBrace + "(column_break|new_page|np|colb|start_of_chorus|soc|end_of_chorus|eoc)" + reCloseBrace,
+                caseInsensitive: true
+            }, {
+                token: [tkBrace, tkSingleTag, tkBrace],
+                regex: reOpenBrace + "(start_of_tab|sot)" + reCloseBrace,
+                caseInsensitive: true,
+                next: "tabBlockTag"
+            }, {
+                token: [tkBrace, tkCommand, tkBrace],
+                regex: reOpenBrace + "(define)" + reColon,
+                caseInsensitive: true,
+                next: "defineTag"
+            }, {
+                // tkCommand?
+                token: [tkBrace, "meta", tkBrace, "text", tkBrace],
+                regex: reOpenBrace + "(c|comment)" + reColon + "(.*)" + reCloseBrace,
+                caseInsensitive: true
+            }, {
+                token: [tkBrace, tkCommand, tkBrace, "string", tkBrace],
+                regex: reOpenBrace + "(title|t|subtitle|st|artist|album|instrument|tuning|key|k)" + reColon + "(.*)" + reCloseBrace,
+                caseInsensitive: true
+            }, {
+                token: [tkBrace, 'invalid', tkBrace, "string", tkBrace],
+                regex: reOpenBrace + "([-\\S]+)" + reColon + "(.*)" + reCloseBrace,
+                caseInsensitive: true
+            }, {
+                token: [tkBrace, 'invalid', tkBrace],
+                regex: reOpenBrace + "(.+)" + reCloseBrace,
+                caseInsensitive: true
+            }, {
+                token: "constant.numeric",
+                regex: reNumber
+            }, {
+                token: ["constant.character.escape", "keyword", "constant.character.escape"],
+                regex: "(\\[)(.*?)(\\])"
+            }, {
+                token: "text",
+                regex: "\\s+"
+            }],
 
-            defineTag: [{
+            "defineTag": [{
                 token: tkBrace,
                 regex: reCloseBrace,
-                next: 'start',
+                next: "start"
             }, {
-                token: 'constant.mumeric',
-                regex: reNumber,
+                token: "constant.mumeric",
+                regex: reNumber
             }, {
-                token: 'keyword.control',
-                regex: '\\b(fingers|frets|finger|fret|string)\\b',
-                caseInsensitive: true,
+                token: "keyword.control",
+                regex: "\\b(fingers|frets|finger|fret|string)\b",
+                caseInsensitive: true
             }, {
                 token: [tkCommand, tkBrace],
-                regex: `\\b(add)${reColon}`,
-                caseInsensitive: true,
+                regex: "\\b(add)" + reColon,
+                caseInsensitive: true
             }, {
-                defaultToken: 'string',
+                defaultToken: "string"
             }],
 
-            tabBlockTag: [{
+            "tabBlockTag": [{
                 token: [tkBrace, tkSingleTag, tkBrace],
-                regex: `${reOpenBrace}(end_of_tab|eot)${reCloseBrace}`,
+                regex: reOpenBrace + "(end_of_tab|eot)" + reCloseBrace,
                 caseInsensitive: true,
-                next: 'start',
+                next: "start"
             }, {
-                token: 'comment.line',
-                regex: '-+',
+                token: "comment.line",
+                regex: "-+"
             }, {
-                token: 'constant.character',
-                regex: '\\|+',
+                token: "constant.character",
+                regex: "\\|+"
             }, {
-                token: 'string',
-                regex: '[a-gA-G][b#]?',
+                token: "string",
+                regex: "[a-gA-G][b#]?"
             }, {
-                token: 'constant.mumeric',
-                regex: reNumber,
+                token: "constant.mumeric",
+                regex: reNumber
             }, {
-                defaultToken: 'comment',
-            }],
+                defaultToken: "comment"
+            }]
         };
 
-        this.normalizeRules();
+        // this.normalizeRules();
     };
 }
 

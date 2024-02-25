@@ -14,7 +14,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex h-screen flex-col">
       <header className="flex items-center justify-between border-b px-6 py-4">
         <h1 className="text-2xl font-bold">Text Editor</h1>
         <div className="flex items-center gap-4">
@@ -26,9 +26,7 @@ export default function HomePage() {
       </header>
       <main className="flex flex-1 overflow-hidden">
         <div className="border-r p-4">
-          <div>
-            <ChordProEditor onChange={handleInputChange} />
-          </div>
+          <ChordProEditor onChange={handleInputChange} />
         </div>
         <div className="flex-1 p-4">
           <h2 className="mb-4 text-lg font-semibold">Text Editor</h2>
