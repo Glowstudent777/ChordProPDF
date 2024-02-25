@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import AceEditor from 'react-ace'
 
-import "ace-builds/src-noconflict/mode-text";
 import "ace-builds/esm-resolver";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/ext-beautify";
@@ -11,10 +10,10 @@ import "ace-builds/src-noconflict/ext-settings_menu";
 import "ace-builds/src-noconflict/ext-keybinding_menu";
 import "ace-builds/src-noconflict/ext-error_marker";
 
-import '@/ace/textmate'
 
 import { cn } from "@/lib/utils"
 import ChordProMode from '@/ace/mode-chordpro';
+import '@/ace/theme-chordpro'
 
 export function ChordProEditor({ onChange, className }: any) {
     const [editorValue, setEditorValue] = useState('');
@@ -29,7 +28,7 @@ export function ChordProEditor({ onChange, className }: any) {
     return (
         <AceEditor
             mode={customMode}
-            theme="textmate"
+            theme="ace/theme/chordpro"
             onChange={handleEditorChange}
             name="editor"
             editorProps={{ $blockScrolling: true }}
