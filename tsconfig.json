@@ -37,6 +37,6 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts"
-  ],
+, "src/lib/ace/mode-chordpro.js"  ],
   "exclude": ["node_modules"]
 }
