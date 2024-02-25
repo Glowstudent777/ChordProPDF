@@ -26,14 +26,14 @@ ace.define("ace/theme/chordpro", ["require", "exports", "module", "ace/lib/dom"]
     .ace-cp .ace_invisible {
         color: rgb(191, 191, 191);
     }
-    .ace_keyword {
-        color: rgb(197, 6, 11);
-    }
     .ace-cp .ace_storage .ace-cp .ace_keyword {
         color: rgb(197, 6, 11);
     }
+    .ace_keyword {
+        color: #0284c7;
+    }
     .ace-cp .ace_constant {
-        color: rgb(197, 6, 11);
+        color: #0284c7;
     }
 
     .ace-cp .ace_constant.ace_buildin {
